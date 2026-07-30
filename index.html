@@ -1050,7 +1050,8 @@
 
             for (const targetUrl of candidateUrls) {
                 try {
-                    const res = await fetch(targetUrl);
+                    const cacheBuster = `?t=${new Date().getTime()}`;
+                    const res = await fetch(targetUrl + (targetUrl.includes('?') ? '&' : '?') + cacheBuster);
                     if (!res.ok) continue;
                     const text = await res.text();
                     
