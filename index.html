@@ -1050,7 +1050,7 @@
 
             for (const targetUrl of candidateUrls) {
                 try {
-                const res = await fetch(targetUrl);
+                    const res = await fetch(targetUrl);
                     if (!res.ok) continue;
                     const text = await res.text();
                     
