@@ -613,7 +613,7 @@
             if (state.gsheetUrl) {
                 fetchGoogleSheetData(state.gsheetUrl, true);
             } else {
-                fetch();
+                loadDemoData();
             }
         };
 
@@ -695,7 +695,7 @@
                     localStorage.removeItem('gsheet_url');
                     state.gsheetUrl = '';
                     state.selectedMonth = 'ALL';
-                    fetch();
+                    loadDemoData();
                     showToast('시뮬레이션 데모 데이터로 리셋되었습니다.');
                 });
             }
@@ -1014,7 +1014,7 @@
             const parsed = parseGoogleSheetUrl(urlInput);
             if (!parsed) {
                 if (!isInitialLoad) showToast('구글 시트 URL 또는 ID를 인식하지 못했습니다.', true);
-                if (isInitialLoad) fetch();
+                if (isInitialLoad) loadDemoData();
                 return;
             }
 
@@ -1071,7 +1071,7 @@
                 if (!isInitialLoad) {
                     showToast('구글 시트 연동 실패: [파일 ➔ 웹에 게시] 주소를 사용해보세요.', true);
                 } else {
-                    fetch();
+                    loadDemoData();
                 }
                 return;
             }
@@ -1113,7 +1113,7 @@
                 if (!isInitialLoad) {
                     showToast('구글 시트 데이터 파싱 오류: ' + err.message, true);
                 } else {
-                    fetch();
+                    loadDemoData();
                 }
             }
         }
@@ -1177,7 +1177,7 @@
         }
 
         /* Load Demo Simulation Data */
-        function fetch() {
+        function loadDemoData() {
             const categories = ['가전/디지털', '생활/주방', '패션/잡화', '뷰티/케어'];
             const models = {
                 '가전/디지털': ['스마트 로봇청소기 Pro', '무선 헤드셋 Max', '공기청정기 Tower', '미니 빔프로젝트'],
