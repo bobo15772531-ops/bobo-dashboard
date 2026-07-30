@@ -2010,6 +2010,13 @@
             XLSX.utils.book_append_sheet(wb, ws, "Export");
             XLSX.writeFile(wb, fileName);
         }
+        const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyZMZ8ReBbj0G00HjUewiu2yKo92E8-WrrwT9avL5k_Q7FGrX2FEOJdCwi5hYfH1NuuC2HTbZ6g1Z/pub?output=csv";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof loadGoogleSheet === "function") {
+      loadGoogleSheet(DEFAULT_SHEET_URL);
+    }
+  });
     </script>
 </body>
 </html>
