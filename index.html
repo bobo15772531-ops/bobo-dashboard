@@ -662,7 +662,7 @@
             setupEventListeners();
             checkLockStatus();
 
-            const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnaHMGdsu_7soJe29gxUKBiA45mllCf35Zw0N_rNcIL4H1icSfV-BoFEWa3e9dkVZ0yAkBjeqWnehZ/pub?gid=367348325&single=true&output=csv";
+            const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
             fetchGoogleSheetData(state.gsheetUrl || DEFAULT_URL, true);
         };
 
@@ -2214,7 +2214,7 @@
             XLSX.writeFile(wb, fileName);
         }
 
-        const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnaHMGdsu_7soJe29gxUKBiA45mllCf35Zw0N_rNcIL4H1icSfV-BoFEWa3e9dkVZ0yAkBjeqWnehZ/pub?gid=367348325&single=true&output=csv";
+        const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
 
         document.addEventListener("DOMContentLoaded", () => {
             localStorage.clear();
