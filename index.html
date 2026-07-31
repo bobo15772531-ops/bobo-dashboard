@@ -201,14 +201,10 @@
             <button class="tab-btn py-3 px-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs sm:text-sm whitespace-nowrap flex items-center gap-1.5" data-tab="monthly">
                 <i data-lucide="bar-chart-2" class="w-4 h-4"></i> 월별 실적
             </button>
-            <!-- 신규 추가된 년도별 실적 탭 -->
-            <button class="tab-btn py-3 px-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs sm:text-sm whitespace-nowrap flex items-center gap-1.5" data-tab="yearly">
-                <i data-lucide="calendar-range" class="w-4 h-4"></i> 년도별 실적
-            </button>
             <button class="tab-btn py-3 px-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs sm:text-sm whitespace-nowrap flex items-center gap-1.5" data-tab="models">
                 <i data-lucide="trophy" class="w-4 h-4"></i> 모델별 순위
             </button>
-            <!-- 모델별 기간 매출 비교 탭 -->
+            <!-- 신규 추가: 모델별 기간 매출 비교 탭 -->
             <button class="tab-btn py-3 px-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 font-semibold text-xs sm:text-sm whitespace-nowrap flex items-center gap-1.5" data-tab="model-compare">
                 <i data-lucide="git-compare" class="w-4 h-4"></i> 모델별 기간 비교
             </button>
@@ -357,50 +353,6 @@
             </div>
         </div>
 
-        <!-- TAB NEW: YEARLY PERFORMANCE (년도별 실적) -->
-        <div id="tab-yearly" class="tab-content hidden space-y-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-                    <h3 class="font-bold text-slate-800 text-sm">년도별 총 정산 매출액</h3>
-                    <div class="h-72 relative">
-                        <canvas id="yearlyTotalChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-                    <h3 class="font-bold text-slate-800 text-sm">년도별 카테고리별 매출 비중</h3>
-                    <div class="h-72 relative">
-                        <canvas id="yearlyCategoryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-                <div class="p-4 border-b border-slate-100 flex items-center justify-between">
-                    <h3 class="font-bold text-slate-800 text-sm">년도별 매출 및 성장률 (YoY)</h3>
-                    <button onclick="exportToCsv('yearly')" class="text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border flex items-center gap-1 font-semibold">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i> CSV 다운로드
-                    </button>
-                </div>
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-xs text-left text-slate-600">
-                        <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
-                            <tr>
-                                <th class="py-3 px-4">년도 (YYYY)</th>
-                                <th class="py-3 px-4 text-right">정산가 총 매출액</th>
-                                <th class="py-3 px-4 text-right">전년 대비 증감(YoY)</th>
-                                <th class="py-3 px-4 text-right">총 판매 수량</th>
-                                <th class="py-3 px-4 text-right">최고 매출 카테고리</th>
-                            </tr>
-                        </thead>
-                        <tbody id="yearlyTableBody" class="divide-y divide-slate-100">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
         <!-- TAB 4: MODEL RANKINGS -->
         <div id="tab-models" class="tab-content hidden space-y-6">
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
@@ -441,15 +393,15 @@
             </div>
         </div>
 
-        <!-- TAB MODEL COMPARE: MODEL PERIOD COMPARISON (일별/월별/년도별 모델 매출 비교) -->
+        <!-- TAB NEW: MODEL PERIOD COMPARISON (일별/월별/년도별 모델 매출 비교) -->
         <div id="tab-model-compare" class="tab-content hidden space-y-6">
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
                     <div>
                         <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                            <i data-lucide="git-compare" class="w-4 h-4 text-blue-600"></i> 정산가 기준 일별 / 월별 / 년도별 모델 매출액 비교
+                            <i data-lucide="git-compare" class="w-4 h-4 text-blue-600"></i> 일별 / 월별 / 년도별 모델 매출 비교
                         </h3>
-                        <p class="text-[11px] text-slate-400">선택한 기간 단위(일/월/년)로 정산가 매출 변화 추이 및 실적을 비교 분석합니다.</p>
+                        <p class="text-[11px] text-slate-400">원하는 주기 단위로 주요 모델들의 매출 변화를 비교 분석합니다.</p>
                     </div>
                     <!-- Period Selection Toggle Buttons -->
                     <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
@@ -465,21 +417,15 @@
                 </div>
             </div>
 
-            <!-- Model Comparison Pivot Table & Excel Exporter -->
+            <!-- Model Comparison Pivot Table -->
             <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
                 <div class="p-4 border-b border-slate-100 flex items-center justify-between">
                     <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                         <i data-lucide="table-properties" class="w-4 h-4 text-indigo-600"></i> 모델별 기간 실적 피벗 매트릭스
                     </h3>
-                    <div class="flex items-center gap-2">
-                        <!-- 전모델 엑셀 다운로드 버튼 -->
-                        <button onclick="exportModelCompareToExcel()" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg border border-emerald-500 flex items-center gap-1 font-semibold transition shadow-sm">
-                            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> 전모델 엑셀 다운로드 (.xlsx)
-                        </button>
-                        <button onclick="exportToCsv('model-compare')" class="text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border flex items-center gap-1 font-semibold">
-                            <i data-lucide="download" class="w-3.5 h-3.5"></i> CSV 다운로드
-                        </button>
-                    </div>
+                    <button onclick="exportToCsv('model-compare')" class="text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border flex items-center gap-1 font-semibold">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> CSV 다운로드
+                    </button>
                 </div>
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="w-full text-xs text-left text-slate-600" id="modelComparePivotTable">
@@ -706,74 +652,21 @@
         ];
 
         /* Init on Window Load with Safe Icon Rendering */
-   window.onload = function() {
-    try {
-        if (window.lucide && typeof lucide.createIcons === 'function') {
-            lucide.createIcons();
-        }
-    } catch(e) { console.warn('Lucide icon load delayed:', e); }
-
-    setupEventListeners();
-    checkLockStatus();
-const FIXED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
-
-state.gsheetUrl = localStorage.getItem('gsheet_url') || FIXED_SHEET_URL;
-fetchGoogleSheetData(state.gsheetUrl, true);
-        /* Enhanced Formatting Helpers */
-        function formatKrw(value) {
-            return '₩' + Math.round(value || 0).toLocaleString();
-        }
-
-        function formatKrwShort(value) {
-            if (value >= 100000000) return (value / 100000000).toFixed(1) + '억원';
-            if (value >= 10000) return (value / 10000).toFixed(0) + '만원';
-            return '₩' + Math.round(value || 0).toLocaleString();
-        }
-
-        function getChartOptions({ isCurrency = false } = {}) {
-            return {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) label += ': ';
-                                if (context.parsed.y !== null) {
-                                    label += isCurrency ? formatKrw(context.parsed.y) : context.parsed.y.toLocaleString();
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: { grid: { display: false } },
-                    y: {
-                        ticks: {
-                            callback: function(value) {
-                                return isCurrency ? formatKrwShort(value) : value.toLocaleString();
-                            }
-                        }
-                    }
+        window.onload = function() {
+            try {
+                if (window.lucide && typeof lucide.createIcons === 'function') {
+                    lucide.createIcons();
                 }
-            };
-        }
+            } catch(e) { console.warn('Lucide icon load delayed:', e); }
 
-        function createOrUpdateChart(canvasId, config) {
-            if (state.charts[canvasId]) {
-                state.charts[canvasId].destroy();
-            }
-            const canvas = document.getElementById(canvasId);
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                state.charts[canvasId] = new Chart(ctx, config);
-            }
-        }
+            setupEventListeners();
+            checkLockStatus();
 
-        /* Enhanced Robust Number Parser */
+            const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnaHMGdsu_7soJe29gxUKBiA45mllCf35Zw0N_rNcIL4H1icSfV-BoFEWa3e9dkVZ0yAkBjeqWnehZ/pub?gid=367348325&single=true&output=csv";
+            fetchGoogleSheetData(state.gsheetUrl || DEFAULT_URL, true);
+        };
+
+        /* Enhanced Robust Number Parser: Strips ₩, $, 원, commas, and formatting */
         function parseNumber(val) {
             if (val === null || val === undefined) return 0;
             if (typeof val === 'number') return isNaN(val) ? 0 : val;
@@ -838,148 +731,6 @@ fetchGoogleSheetData(state.gsheetUrl, true);
             setTimeout(() => {
                 toast.classList.add('hidden');
             }, 4000);
-        }
-
-        /* Data Aggregation Helper Functions */
-        function aggregateByDaily(data) {
-            const map = {};
-            data.forEach(r => {
-                if (!map[r.date]) map[r.date] = { total: 0, qty: 0, count: 0 };
-                map[r.date].total += r.settlement;
-                map[r.date].qty += r.qty;
-                map[r.date].count += 1;
-            });
-            const labels = Object.keys(map).sort();
-            return {
-                labels,
-                totals: labels.map(l => map[l].total),
-                qtys: labels.map(l => map[l].qty),
-                counts: labels.map(l => map[l].count)
-            };
-        }
-
-        function aggregateByMonthly(data) {
-            const map = {};
-            data.forEach(r => {
-                if (!map[r.month]) map[r.month] = { total: 0, qty: 0 };
-                map[r.month].total += r.settlement;
-                map[r.month].qty += r.qty;
-            });
-            const labels = Object.keys(map).sort();
-            return {
-                labels,
-                totals: labels.map(l => map[l].total),
-                qtys: labels.map(l => map[l].qty)
-            };
-        }
-
-        /* 신규 추가: 년도별 데이터 집계 */
-        function aggregateByYearly(data) {
-            const map = {};
-            data.forEach(r => {
-                if (!map[r.year]) map[r.year] = { total: 0, qty: 0 };
-                map[r.year].total += r.settlement;
-                map[r.year].qty += r.qty;
-            });
-            const labels = Object.keys(map).sort();
-            return {
-                labels,
-                totals: labels.map(l => map[l].total),
-                qtys: labels.map(l => map[l].qty)
-            };
-        }
-
-        function aggregateByCategory(data) {
-            const map = {};
-            data.forEach(r => map[r.category] = (map[r.category] || 0) + r.settlement);
-            const labels = Object.keys(map).sort((a,b) => map[b] - map[a]);
-            return { labels, totals: labels.map(l => map[l]) };
-        }
-
-        function aggregateByMarket(data) {
-            const map = {};
-            const qtyMap = {};
-            const countMap = {};
-            data.forEach(r => {
-                map[r.market] = (map[r.market] || 0) + r.settlement;
-                qtyMap[r.market] = (qtyMap[r.market] || 0) + r.qty;
-                countMap[r.market] = (countMap[r.market] || 0) + 1;
-            });
-            const labels = Object.keys(map).sort((a,b) => map[b] - map[a]);
-            return {
-                labels,
-                totals: labels.map(l => map[l]),
-                qtys: labels.map(l => qtyMap[l]),
-                counts: labels.map(l => countMap[l])
-            };
-        }
-
-        function aggregateByModel(data) {
-            const map = {};
-            data.forEach(r => {
-                if (!map[r.model]) map[r.model] = { model: r.model, category: r.category, total: 0, qty: 0 };
-                map[r.model].total += r.settlement;
-                map[r.model].qty += r.qty;
-            });
-            return Object.values(map).sort((a,b) => b.total - a.total);
-        }
-
-        function aggregateDailyCategoryStacked(data) {
-            const dates = [...new Set(data.map(d => d.date))].sort();
-            const categories = [...new Set(data.map(d => d.category))].sort();
-
-            const datasets = categories.map((cat, idx) => {
-                const values = dates.map(d => {
-                    return data.filter(r => r.date === d && r.category === cat)
-                               .reduce((acc, curr) => acc + curr.settlement, 0);
-                });
-                return {
-                    label: cat,
-                    data: values,
-                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length]
-                };
-            });
-
-            return { labels: dates, datasets };
-        }
-
-        function aggregateMonthlyCategoryStacked(data) {
-            const months = [...new Set(data.map(d => d.month))].sort();
-            const categories = [...new Set(data.map(d => d.category))].sort();
-
-            const datasets = categories.map((cat, idx) => {
-                const values = months.map(m => {
-                    return data.filter(r => r.month === m && r.category === cat)
-                               .reduce((acc, curr) => acc + curr.settlement, 0);
-                });
-                return {
-                    label: cat,
-                    data: values,
-                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length]
-                };
-            });
-
-            return { labels: months, datasets };
-        }
-
-        /* 신규 추가: 년도별 카테고리 스택 데이터 집계 */
-        function aggregateYearlyCategoryStacked(data) {
-            const years = [...new Set(data.map(d => d.year))].sort();
-            const categories = [...new Set(data.map(d => d.category))].sort();
-
-            const datasets = categories.map((cat, idx) => {
-                const values = years.map(y => {
-                    return data.filter(r => r.year === y && r.category === cat)
-                               .reduce((acc, curr) => acc + curr.settlement, 0);
-                });
-                return {
-                    label: cat,
-                    data: values,
-                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length]
-                };
-            });
-
-            return { labels: years, datasets };
         }
 
         /* Event Listener Setup */
@@ -1482,9 +1233,9 @@ fetchGoogleSheetData(state.gsheetUrl, true);
             const markets = ['네이버 스마트스토어', '쿠팡', '11번가', 'G마켓', '자사몰'];
 
             const demoData = [];
-            const startDate = new Date('2024-01-01'); // 연도별 분석 테스트용 시작년도 조정
+            const startDate = new Date('2025-01-01');
 
-            for (let d = 0; d < 730; d++) {
+            for (let d = 0; d < 400; d++) {
                 const currentDate = new Date(startDate);
                 currentDate.setDate(startDate.getDate() + d);
 
@@ -1548,7 +1299,6 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                 case 'overview': renderOverviewTab(); break;
                 case 'daily': renderDailyTab(); break;
                 case 'monthly': renderMonthlyTab(); break;
-                case 'yearly': renderYearlyTab(); break; // 신규 년도별 탭 연결
                 case 'models': renderModelsTab(); break;
                 case 'model-compare': renderModelCompareTab(); break;
                 case 'markets': renderMarketsTab(); break;
@@ -1948,90 +1698,6 @@ fetchGoogleSheetData(state.gsheetUrl, true);
             }
         }
 
-        /* 신규 추가: 년도별 실적 탭 렌더링 함수 */
-        function renderYearlyTab() {
-            const data = state.filteredData;
-            const yearlyData = aggregateByYearly(data);
-
-            createOrUpdateChart('yearlyTotalChart', {
-                type: 'bar',
-                data: {
-                    labels: yearlyData.labels,
-                    datasets: [{
-                        label: '년도별 정산 매출액 (₩)',
-                        data: yearlyData.totals,
-                        backgroundColor: '#10b981',
-                        borderRadius: 8
-                    }]
-                },
-                options: getChartOptions({ isCurrency: true })
-            });
-
-            const catYearly = aggregateYearlyCategoryStacked(data);
-            createOrUpdateChart('yearlyCategoryChart', {
-                type: 'bar',
-                data: {
-                    labels: catYearly.labels,
-                    datasets: catYearly.datasets
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { stacked: true },
-                        y: { stacked: true, ticks: { callback: v => formatKrwShort(v) } }
-                    },
-                    plugins: {
-                        legend: { position: 'top' },
-                        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${formatKrw(ctx.raw)}` } }
-                    }
-                }
-            });
-
-            const tbody = document.getElementById('yearlyTableBody');
-            if (tbody) {
-                tbody.innerHTML = '';
-                yearlyData.labels.forEach((y, idx) => {
-                    const total = yearlyData.totals[idx];
-                    const qty = yearlyData.qtys[idx];
-                    const prevTotal = idx > 0 ? yearlyData.totals[idx - 1] : null;
-
-                    let yoyText = '-';
-                    let yoyClass = 'text-slate-400';
-                    if (prevTotal !== null && prevTotal > 0) {
-                        const diff = total - prevTotal;
-                        const pct = ((diff / prevTotal) * 100).toFixed(1);
-                        if (diff > 0) {
-                            yoyText = `▲ +${pct}% (${formatKrwShort(diff)})`;
-                            yoyClass = 'text-emerald-600 font-bold';
-                        } else if (diff < 0) {
-                            yoyText = `▼ ${pct}% (${formatKrwShort(diff)})`;
-                            yoyClass = 'text-rose-600 font-bold';
-                        } else {
-                            yoyText = `0.0%`;
-                        }
-                    }
-
-                    const yearRows = data.filter(r => r.year === y);
-                    const catMap = {};
-                    yearRows.forEach(r => catMap[r.category] = (catMap[r.category] || 0) + r.settlement);
-                    let topCat = '-';
-                    let topCatRev = 0;
-                    Object.entries(catMap).forEach(([c, r]) => { if (r > topCatRev) { topCatRev = r; topCat = c; } });
-
-                    tbody.innerHTML += `
-                        <tr class="hover:bg-slate-50 transition">
-                            <td class="py-3 px-4 font-bold text-slate-800">${y}년</td>
-                            <td class="py-3 px-4 text-right font-bold text-emerald-600">${formatKrw(total)}</td>
-                            <td class="py-3 px-4 text-right text-xs ${yoyClass}">${yoyText}</td>
-                            <td class="py-3 px-4 text-right">${qty.toLocaleString()}개</td>
-                            <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">${topCat}</span></td>
-                        </tr>
-                    `;
-                });
-            }
-        }
-
         function renderModelsTab() {
             const data = state.filteredData;
             const modelRanking = aggregateByModel(data);
@@ -2081,10 +1747,11 @@ fetchGoogleSheetData(state.gsheetUrl, true);
             }
         }
 
-        /* ① 정산가 기준 일별/월별/년도별 모델 매출 비교 기능 */
+        /* NEW FUNCTION: Model Compare Tab Handler & Aggregator */
         function setModelComparePeriod(period) {
             state.modelComparePeriod = period;
 
+            // Button UI Styles
             ['Daily', 'Monthly', 'Yearly'].forEach(p => {
                 const btn = document.getElementById(`btnPeriod${p}`);
                 if (btn) {
@@ -2103,9 +1770,11 @@ fetchGoogleSheetData(state.gsheetUrl, true);
             const data = state.filteredData;
             const period = state.modelComparePeriod; // 'daily', 'monthly', 'yearly'
 
+            // Top models by overall total in filtered view
             const topModelsObj = aggregateByModel(data).slice(0, 8); 
             const topModelNames = topModelsObj.map(m => m.model);
 
+            // Time Slots Key Determination
             let timeKeys = [];
             if (period === 'daily') {
                 timeKeys = [...new Set(data.map(d => d.date))].sort();
@@ -2115,6 +1784,7 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                 timeKeys = [...new Set(data.map(d => d.year))].sort();
             }
 
+            // Pivot Map Construction: pivotMap[modelName][timeKey] = sum(settlement)
             const pivotMap = {};
             topModelNames.forEach(m => {
                 pivotMap[m] = {};
@@ -2133,6 +1803,7 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                 }
             });
 
+            // Build Chart Datasets
             const datasets = topModelNames.map((modelName, idx) => {
                 const values = timeKeys.map(tk => pivotMap[modelName][tk]);
                 const color = CHART_COLORS[idx % CHART_COLORS.length];
@@ -2168,10 +1839,12 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                 }
             });
 
+            // Render Pivot Matrix Table
             const thead = document.getElementById('modelCompareTableHead');
             const tbody = document.getElementById('modelCompareTableBody');
 
             if (thead && tbody) {
+                // Head
                 let headHtml = `
                     <tr>
                         <th class="py-3 px-4 bg-slate-100 font-bold text-slate-800 sticky left-0 z-10 border-r border-slate-200">모델명</th>
@@ -2183,6 +1856,7 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                 headHtml += `</tr>`;
                 thead.innerHTML = headHtml;
 
+                // Body
                 let bodyHtml = '';
                 topModelsObj.forEach((mObj, idx) => {
                     const mName = mObj.model;
@@ -2209,104 +1883,6 @@ fetchGoogleSheetData(state.gsheetUrl, true);
 
                 tbody.innerHTML = bodyHtml;
             }
-        }
-
-        /* ② 전모델 엑셀 다운로드 기능 (.xlsx) */
-        function exportModelCompareToExcel() {
-            if (typeof XLSX === 'undefined') {
-                showToast('엑셀 내보내기 라이브러리를 불러올 수 없습니다.', true);
-                return;
-            }
-
-            const data = state.filteredData;
-            const period = state.modelComparePeriod; // 'daily', 'monthly', 'yearly'
-            const allModelsObj = aggregateByModel(data); // 전체 모델 내보내기
-
-            let timeKeys = [];
-            if (period === 'daily') timeKeys = [...new Set(data.map(d => d.date))].sort();
-            if (period === 'monthly') timeKeys = [...new Set(data.map(d => d.month))].sort();
-            if (period === 'yearly') timeKeys = [...new Set(data.map(d => d.year))].sort();
-
-            const excelData = allModelsObj.map(mObj => {
-                const row = {
-                    '카테고리': mObj.category,
-                    '모델명': mObj.model,
-                    '총 정산가 매출액': mObj.total,
-                    '총 판매수량': mObj.qty
-                };
-
-                timeKeys.forEach(tk => {
-                    const sum = data
-                        .filter(d => d.model === mObj.model && (period === 'daily' ? d.date === tk : period === 'monthly' ? d.month === tk : d.year === tk))
-                        .reduce((a, b) => a + b.settlement, 0);
-                    row[tk] = sum;
-                });
-
-                return row;
-            });
-
-            const periodName = period === 'daily' ? '일별' : period === 'monthly' ? '월별' : '년도별';
-            const ws = XLSX.utils.json_to_sheet(excelData);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "전모델_기간별비교");
-
-            XLSX.writeFile(wb, `전모델_정산가매출_${periodName}_비교.xlsx`);
-            showToast(`전모델 ${periodName} 매출 비교 엑셀 파일(.xlsx)이 정상적으로 다운로드되었습니다.`);
-        }
-
-        /* Generic CSV Export */
-        function exportToCsv(type) {
-            const data = state.filteredData;
-            let rows = [];
-            let fileName = `판매실적_${type}_${new Date().toISOString().slice(0, 10)}.csv`;
-
-            if (type === 'daily') {
-                const dailyData = aggregateByDaily(data);
-                rows.push(['날짜', '정산가 총액', '판매 수량', '주문 건수', '건당 평균 정산가']);
-                dailyData.labels.forEach((d, i) => {
-                    const total = dailyData.totals[i];
-                    const qty = dailyData.qtys[i];
-                    const count = dailyData.counts[i];
-                    const avg = count > 0 ? total / count : 0;
-                    rows.push([d, total, qty, count, Math.round(avg)]);
-                });
-            } else if (type === 'monthly') {
-                const monthlyData = aggregateByMonthly(data);
-                rows.push(['월', '정산가 총액', '판매 수량']);
-                monthlyData.labels.forEach((m, i) => {
-                    rows.push([m, monthlyData.totals[i], monthlyData.qtys[i]]);
-                });
-            } else if (type === 'yearly') {
-                const yearlyData = aggregateByYearly(data);
-                rows.push(['년도', '정산가 총액', '판매 수량']);
-                yearlyData.labels.forEach((y, i) => {
-                    rows.push([y, yearlyData.totals[i], yearlyData.qtys[i]]);
-                });
-            } else if (type === 'models') {
-                const modelData = aggregateByModel(data);
-                rows.push(['순위', '카테고리', '모델명', '정산가 총 매출', '판매 수량']);
-                modelData.forEach((m, i) => {
-                    rows.push([i + 1, m.category, m.model, m.total, m.qty]);
-                });
-            } else if (type === 'model-compare') {
-                exportModelCompareToExcel();
-                return;
-            } else if (type === 'raw') {
-                rows.push(['#', '날짜', '카테고리', '모델명', '마켓', '수량', '정산가']);
-                data.forEach(r => {
-                    rows.push([r.id, r.date, r.category, r.model, r.market, r.qty, r.settlement]);
-                });
-            }
-
-            let csvContent = "\uFEFF" + rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(",")).join("\n");
-            let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            let link = document.createElement("a");
-            let url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", fileName);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
         }
 
         function renderMarketsTab() {
@@ -2388,26 +1964,264 @@ fetchGoogleSheetData(state.gsheetUrl, true);
                     tbody.innerHTML += `
                         <tr class="hover:bg-slate-50 transition">
                             <td class="py-2 px-4 text-slate-400">${r.id}</td>
-                            <td class="py-2 px-4 font-medium text-slate-700">${r.date}</td>
-                            <td class="py-2 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">${r.category}</span></td>
+                            <td class="py-2 px-4 font-medium">${r.date}</td>
+                            <td class="py-2 px-4">${r.category}</td>
                             <td class="py-2 px-4 font-bold text-slate-800">${r.model}</td>
-                            <td class="py-2 px-4 text-slate-600">${r.market}</td>
-                            <td class="py-2 px-4 text-right font-semibold">${r.qty.toLocaleString()}</td>
+                            <td class="py-2 px-4"><span class="px-2 py-0.5 bg-slate-100 rounded text-slate-600">${r.market}</span></td>
+                            <td class="py-2 px-4 text-right">${r.qty}</td>
                             <td class="py-2 px-4 text-right font-bold text-blue-600">${formatKrw(r.settlement)}</td>
                         </tr>
                     `;
                 });
             }
-}; 
+        }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const DEFAULT_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv';
-    const savedUrl = localStorage.getItem('gsheet_url') || DEFAULT_GSHEET_URL;
-    if (savedUrl) {
-        state.gsheetUrl = savedUrl;
-        fetchGoogleSheetData(savedUrl, false);
-    }
-});
+        /* Aggregation Helpers */
+        function aggregateByDaily(data) {
+            const map = {};
+            data.forEach(d => {
+                if (!map[d.date]) map[d.date] = { total: 0, qty: 0, count: 0 };
+                map[d.date].total += d.settlement;
+                map[d.date].qty += d.qty;
+                map[d.date].count += 1;
+            });
+            const labels = Object.keys(map).sort();
+            return {
+                labels,
+                totals: labels.map(l => map[l].total),
+                qtys: labels.map(l => map[l].qty),
+                counts: labels.map(l => map[l].count)
+            };
+        }
+
+        function aggregateByMonthly(data) {
+            const map = {};
+            data.forEach(d => {
+                if (!map[d.month]) map[d.month] = { total: 0, qty: 0, count: 0 };
+                map[d.month].total += d.settlement;
+                map[d.month].qty += d.qty;
+                map[d.month].count += 1;
+            });
+            const labels = Object.keys(map).sort();
+            return {
+                labels,
+                totals: labels.map(l => map[l].total),
+                qtys: labels.map(l => map[l].qty),
+                counts: labels.map(l => map[l].count)
+            };
+        }
+
+        function aggregateByCategory(data) {
+            const map = {};
+            data.forEach(d => map[d.category] = (map[d.category] || 0) + d.settlement);
+            const labels = Object.keys(map).sort((a, b) => map[b] - map[a]);
+            return { labels, totals: labels.map(l => map[l]) };
+        }
+
+        function aggregateByMarket(data) {
+            const map = {};
+            data.forEach(d => {
+                if (!map[d.market]) map[d.market] = { total: 0, qty: 0, count: 0 };
+                map[d.market].total += d.settlement;
+                map[d.market].qty += d.qty;
+                map[d.market].count += 1;
+            });
+            const labels = Object.keys(map).sort((a, b) => map[b].total - map[a].total);
+            return {
+                labels,
+                totals: labels.map(l => map[l].total),
+                qtys: labels.map(l => map[l].qty),
+                counts: labels.map(l => map[l].count)
+            };
+        }
+
+        function aggregateByModel(data) {
+            const map = {};
+            data.forEach(d => {
+                if (!map[d.model]) map[d.model] = { model: d.model, category: d.category, total: 0, qty: 0 };
+                map[d.model].total += d.settlement;
+                map[d.model].qty += d.qty;
+            });
+            return Object.values(map).sort((a, b) => b.total - a.total);
+        }
+
+        function aggregateDailyCategoryStacked(data) {
+            const dates = [...new Set(data.map(d => d.date))].sort();
+            const categories = [...new Set(data.map(d => d.category))].sort();
+
+            const datasets = categories.map((cat, idx) => {
+                const values = dates.map(date => {
+                    return data
+                        .filter(d => d.date === date && d.category === cat)
+                        .reduce((acc, curr) => acc + curr.settlement, 0);
+                });
+                return {
+                    label: cat,
+                    data: values,
+                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length]
+                };
+            });
+
+            return { labels: dates, datasets };
+        }
+
+        function aggregateMonthlyCategoryStacked(data) {
+            const months = [...new Set(data.map(d => d.month))].sort();
+            const categories = [...new Set(data.map(d => d.category))].sort();
+
+            const datasets = categories.map((cat, idx) => {
+                const values = months.map(m => {
+                    return data
+                        .filter(d => d.month === m && d.category === cat)
+                        .reduce((acc, curr) => acc + curr.settlement, 0);
+                });
+                return {
+                    label: cat,
+                    data: values,
+                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length],
+                    borderRadius: 4
+                };
+            });
+
+            return { labels: months, datasets };
+        }
+
+        /* Safe Chart Instance Manager */
+        function createOrUpdateChart(canvasId, config) {
+            if (typeof Chart === 'undefined') return;
+
+            const ctx = document.getElementById(canvasId);
+            if (!ctx) return;
+
+            const existingChart = Chart.getChart(ctx);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            if (state.charts[canvasId]) {
+                try {
+                    state.charts[canvasId].destroy();
+                } catch(e) {}
+            }
+
+            state.charts[canvasId] = new Chart(ctx, config);
+        }
+
+        function getChartOptions({ isCurrency = false } = {}) {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { size: 11 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                let val = ctx.raw;
+                                return isCurrency ? ` ${ctx.dataset.label || ''}: ${formatKrw(val)}` : ` ${val}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: {
+                        ticks: {
+                            callback: function(val) {
+                                return isCurrency ? formatKrwShort(val) : val;
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        /* Number Formatting Helpers */
+        function formatKrw(num) {
+            if (isNaN(num)) return '₩0';
+            return '₩' + Math.round(num).toLocaleString('ko-KR');
+        }
+
+        function formatKrwShort(num) {
+            if (isNaN(num)) return '0원';
+            if (num >= 100000000) return (num / 100000000).toFixed(1) + '억원';
+            if (num >= 10000) return (num / 10000).toFixed(0) + '만원';
+            return '₩' + num.toLocaleString();
+        }
+
+        /* CSV Generator & Exporter */
+        function exportToCsv(type) {
+            if (typeof XLSX === 'undefined') {
+                showToast('CSV 내보내기 라이브러리를 불러올 수 없습니다.', true);
+                return;
+            }
+
+            let exportData = [];
+            let fileName = 'sales_data.csv';
+
+            if (type === 'daily') {
+                const daily = aggregateByDaily(state.filteredData);
+                exportData = daily.labels.map((d, i) => ({
+                    '날짜': d,
+                    '정산가총액': daily.totals[i],
+                    '판매수량': daily.qtys[i],
+                    '건수': daily.counts[i]
+                }));
+                fileName = '일별_판매실적_정산가기준.csv';
+            } else if (type === 'models') {
+                const models = aggregateByModel(state.filteredData);
+                exportData = models.map((m, idx) => ({
+                    '순위': idx + 1,
+                    '모델명': m.model,
+                    '카테고리': m.category,
+                    '정산가총매출': m.total,
+                    '판매수량': m.qty
+                }));
+                fileName = '모델별_판매순위_정산가기준.csv';
+            } else if (type === 'model-compare') {
+                const topModels = aggregateByModel(state.filteredData).slice(0, 15);
+                const period = state.modelComparePeriod;
+                let timeKeys = [];
+                if (period === 'daily') timeKeys = [...new Set(state.filteredData.map(d => d.date))].sort();
+                if (period === 'monthly') timeKeys = [...new Set(state.filteredData.map(d => d.month))].sort();
+                if (period === 'yearly') timeKeys = [...new Set(state.filteredData.map(d => d.year))].sort();
+
+                exportData = topModels.map(mObj => {
+                    const row = { '모델명': mObj.model, '카테고리': mObj.category };
+                    timeKeys.forEach(tk => {
+                        const sum = state.filteredData
+                            .filter(d => d.model === mObj.model && (period === 'daily' ? d.date === tk : period === 'monthly' ? d.month === tk : d.year === tk))
+                            .reduce((a, b) => a + b.settlement, 0);
+                        row[tk] = sum;
+                    });
+                    return row;
+                });
+                fileName = `모델별_${period}_매출비교.csv`;
+            } else {
+                exportData = state.filteredData.map(r => ({
+                    '날짜': r.date,
+                    '카테고리': r.category,
+                    '모델명': r.model,
+                    '마켓': r.market,
+                    '수량': r.qty,
+                    '정산가': r.settlement
+                }));
+                fileName = '정산가_판매실적_원데이터.csv';
+            }
+
+            const ws = XLSX.utils.json_to_sheet(exportData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Export");
+            XLSX.writeFile(wb, fileName);
+        }
+
+        const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnaHMGdsu_7soJe29gxUKBiA45mllCf35Zw0N_rNcIL4H1icSfV-BoFEWa3e9dkVZ0yAkBjeqWnehZ/pub?gid=367348325&single=true&output=csv";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            localStorage.clear();
+            if (typeof fetchGoogleSheetData === "function") {
+                fetchGoogleSheetData(DEFAULT_SHEET_URL, true);
+            }
+        });
     </script>
 </body>
 </html>
