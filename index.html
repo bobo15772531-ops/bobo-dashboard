@@ -610,11 +610,8 @@
             setupEventListeners();
             checkLockStatus();
 
-            if (state.gsheetUrl) {
-                fetchGoogleSheetData(state.gsheetUrl, true);
-            } else {
-                loadDemoData();
-            }
+const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyZMZ8ReBbj0G00HjUewiu2yKo92E8-WrrwT9avL5k_Q7FGrX2FEOJdCwi5hYfH1NuuC2HTbZ6g1Z/pub?output=csv";
+fetchGoogleSheetData(state.gsheetUrl || DEFAULT_URL, true);
         };
 
         /* Enhanced Robust Number Parser: Strips ₩, $, 원, commas, and formatting */
@@ -2014,10 +2011,11 @@ const DEFAULT_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyZ
 
   document.addEventListener("DOMContentLoaded", () => {
     localStorage.clear();
-    if (typeof loadGoogleSheet === "function") {
-      loadGoogleSheet(DEFAULT_SHEET_URL);
+    if (typeof fetchGoogleSheetData === "function") {
+      fetchGoogleSheetData(DEFAULT_SHEET_URL, true);
     }
   });
+        
     </script>
 </body>
 </html>
