@@ -715,14 +715,10 @@
 
     setupEventListeners();
     checkLockStatus();
-const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
-    if (!localStorage.getItem('gsheet_url')) {
-        localStorage.setItem('gsheet_url', DEFAULT_URL);
-    }
+const FIXED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwByHXBeEmNXiXZ4cmUIXuQLzTj7mon71850ERFJin13DSCstTCu1SYojZ3YuPTuP6X3OPc8-D19p/pub?output=csv";
     
-    state.gsheetUrl = localStorage.getItem('gsheet_url');
+    state.gsheetUrl = FIXED_SHEET_URL;
     fetchGoogleSheetData(state.gsheetUrl, true);
-};
         /* Enhanced Formatting Helpers */
         function formatKrw(value) {
             return '₩' + Math.round(value || 0).toLocaleString();
@@ -2402,13 +2398,6 @@ const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEM
                     `;
                 });
             }
-      const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
-    if (!localStorage.getItem('gsheet_url')) {
-        localStorage.setItem('gsheet_url', DEFAULT_URL);
-    }
-    
-    state.gsheetUrl = localStorage.getItem('gsheet_url');
-    fetchGoogleSheetData(state.gsheetUrl, true);
 }; 
     </script>
 </body>
