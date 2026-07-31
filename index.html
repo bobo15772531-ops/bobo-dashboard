@@ -715,8 +715,11 @@
 
     setupEventListeners();
     checkLockStatus();
-    const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
-    if (!localStorage.getItem('gsheet_url')) {
+ const DEFAULT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWByHXBeEMnXIXZ4cmUIXuQLzTj7mon7l850ERfJinl3DSCstTCu1SYojZ3yuPtuPC6X3OPc8-D19p/pub?gid=367348325&single=true&output=csv";
+localStorage.setItem('gsheet_url', DEFAULT_URL);
+
+state.gsheetUrl = DEFAULT_URL;
+fetchGoogleSheetData(state.gsheetUrl, true);
         localStorage.setItem('gsheet_url', DEFAULT_URL);
     }
 
